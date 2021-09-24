@@ -14,25 +14,32 @@
 <input id="text2"></input>
 <button onclick="save2()">Save Other</button>
 <script>
-   function on_init(answer_data){
-   	 document.getElementById('answer').innerText = answer_data;
-   }
-   
-   function save(){
-   	var value = document.getElementById('text').value;
-       window.parent.postMessage({
-            type: 'save_answer',
-            value : value
-        }, '*');
-   }
+    //on_init(answer_data) 
+    function setDefault(){
+        window.addEventListener('message', function(e) {
+            const data = e.data;
+            document.getElementById('answer').innerText = data;
+        });
+    }
+    
+    //App.save_answer(data)
+    function save(){
+        var value = document.getElementById('text').value;
+        window.parent.abc(value)
+        // window.parent.postMessage({
+        //         type: 'save_answer',
+        //         data : value
+        //     }, '*');
+    }
 	 
-	 function save2(){
-   	var value = document.getElementById('text2').value;
-   	 window.parent.postMessage({
-            type : 'save_answer_other',
-            value : value, 
-            questionName: 'result'
-        }, '*');
+    //App.save_answer_other(data)
+	function save2(){
+        var value = document.getElementById('text2').value;
+        window.parent.postMessage({
+                type : 'save_answer_other',
+                data : value, 
+                questionName: 'result'
+            }, '*');
    }
 </script>
 </body>
