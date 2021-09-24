@@ -25,16 +25,16 @@
         try {
             App.save_answer(data)            
         } catch (error) {
-            
-        }
-        try {
+            try {
             window.parent.postMessage({
-                type: 'save_answer',
+                function: 'save_answer',
                 data : value
-            }, '*');
-        } catch (error) {
-            
+                }, '*');
+            } catch (error) {
+                
+            }
         }
+        
         
     }
 	 
@@ -44,16 +44,17 @@
         try {
             App.save_answer_other(value, 'result')
         } catch (error) {
-        }
-        try {
+            try {
             window.parent.postMessage({
-                type : 'save_answer_other',
+                function : 'save_answer_other',
                 data : value, 
                 questionName: 'result'
             }, '*'); 
-        } catch (error) {
-            
+            } catch (error) {
+                
+            }
         }
+        
         
    }
 </script>
