@@ -15,11 +15,8 @@
 <button onclick="save2()">Save Other</button>
 <script>
     //on_init(answer_data) 
-    function setDefault(){
-        window.addEventListener('message', function(e) {
-            const data = e.data;
-            document.getElementById('answer').innerText = data;
-        });
+    function on_init(answer_data){
+        console.log('answer_data',answer_data)
     }
     
     //App.save_answer(data)
