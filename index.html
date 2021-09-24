@@ -18,26 +18,21 @@
     function on_init(answer_data){
    	 document.getElementById('answer').innerText = answer_data;
    }
-    try {
-        window.addEventListener('message', function(e) {
-            const data = e.data;
-            on_init(data)
-        });
-    } catch (error) {}
+
+   window.addEventListener('message', function(e) {
+        on_init(e.data)
+    });
+
     //App.save_answer(data)
     function save(){
         var value = document.getElementById('text').value;
         try {
             App.save_answer(value)            
         } catch (error) {
-            try {
             window.parent.postMessage({
                 function: 'save_answer',
                 data : value
-                }, '*');
-            } catch (error) {
-                
-            }
+            }, '*');
         }
     }
 	 
@@ -47,18 +42,12 @@
         try {
             App.save_answer_other('result', value);
         } catch (error) {
-            try {
             window.parent.postMessage({
                 function : 'save_answer_other',
                 data : value, 
                 questionName: 'result'
-            }, '*'); 
-            } catch (error) {
-                
-            }
-        }
-        
-        
+            }, '*');
+        }   
    }
 </script>
 </body>
