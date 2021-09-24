@@ -25,16 +25,17 @@
     //App.save_answer(data)
     function save(){
         var value = document.getElementById('text').value;
-        window.parent.abc(value)
-        // window.parent.postMessage({
-        //         type: 'save_answer',
-        //         data : value
-        //     }, '*');
+        App.save_answer(data)
+        window.parent.postMessage({
+                type: 'save_answer',
+                data : value
+            }, '*');
     }
 	 
     //App.save_answer_other(data)
 	function save2(){
         var value = document.getElementById('text2').value;
+        App.save_answer_other(value, 'result')
         window.parent.postMessage({
                 type : 'save_answer_other',
                 data : value, 
