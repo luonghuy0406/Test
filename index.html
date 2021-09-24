@@ -25,15 +25,8 @@
 	 
 	 function save2(){
    	var value = document.getElementById('text2').value;
-   	 App.save_answer_other('result', value);
+   	 window.parent.postMessage({save_answer_other: value, question: 'result'}, '*');
    }
-   window.addEventListener('message', function(e) {
-    // Get the sent data
-    const data = e.data;
-    if(data.on_init){
-        on_init(data.on_init)
-    }
-});
 </script>
 </body>
 </html>
