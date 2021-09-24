@@ -20,12 +20,19 @@
    
    function save(){
    	var value = document.getElementById('text').value;
-       window.parent.postMessage({save_answer: value}, '*');
+       window.parent.postMessage({
+            type: 'save_answer',
+            value : value
+        }, '*');
    }
 	 
 	 function save2(){
    	var value = document.getElementById('text2').value;
-   	 window.parent.postMessage({save_answer_other: value, question: 'result'}, '*');
+   	 window.parent.postMessage({
+            type : 'save_answer_other',
+            value : value, 
+            questionName: 'result'
+        }, '*');
    }
 </script>
 </body>
