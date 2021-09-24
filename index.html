@@ -18,7 +18,12 @@
     function on_init(answer_data){
    	 document.getElementById('answer').innerText = answer_data;
    }
-    
+    try {
+        window.addEventListener('message', function(e) {
+            const data = e.data;
+            on_init(data)
+        });
+    } catch (error) {}
     //App.save_answer(data)
     function save(){
         var value = document.getElementById('text').value;
@@ -34,8 +39,6 @@
                 
             }
         }
-        
-        
     }
 	 
     //App.save_answer_other(data)
