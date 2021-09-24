@@ -23,7 +23,7 @@
     function save(){
         var value = document.getElementById('text').value;
         try {
-            App.save_answer(data)            
+            App.save_answer(value)            
         } catch (error) {
             try {
             window.parent.postMessage({
@@ -42,7 +42,7 @@
 	function save2(){
         var value = document.getElementById('text2').value;
         try {
-            App.save_answer_other(value, 'result')
+            App.save_answer_other('result', value);
         } catch (error) {
             try {
             window.parent.postMessage({
