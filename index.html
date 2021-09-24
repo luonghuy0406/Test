@@ -22,22 +22,39 @@
     //App.save_answer(data)
     function save(){
         var value = document.getElementById('text').value;
-        App.save_answer(data)
-        window.parent.postMessage({
+        try {
+            App.save_answer(data)            
+        } catch (error) {
+            
+        }
+        try {
+            window.parent.postMessage({
                 type: 'save_answer',
                 data : value
             }, '*');
+        } catch (error) {
+            
+        }
+        
     }
 	 
     //App.save_answer_other(data)
 	function save2(){
         var value = document.getElementById('text2').value;
-        App.save_answer_other(value, 'result')
-        window.parent.postMessage({
+        try {
+            App.save_answer_other(value, 'result')
+        } catch (error) {
+        }
+        try {
+            window.parent.postMessage({
                 type : 'save_answer_other',
                 data : value, 
                 questionName: 'result'
-            }, '*');
+            }, '*'); 
+        } catch (error) {
+            
+        }
+        
    }
 </script>
 </body>
