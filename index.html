@@ -20,7 +20,9 @@
    }
 
    window.addEventListener('message', function(e) {
-        on_init(e.data)
+       if(e.data.function === 'on_init'){
+            on_init(e.data.data)
+        }
     });
 
     //App.save_answer(data)
