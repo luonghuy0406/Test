@@ -13,6 +13,17 @@
 <button onclick="save()">Save</button>
 <input id="text2"></input>
 <button onclick="save2()">Save Other</button>
+<div>
+    <br/>
+    <label for="img">Select image:</label>
+    <input id='file' type="file" name='file_upload'>
+    <br/>
+    <br/>
+    
+    <input id="questionName" placeholder="nhập câu hỏi cần lưu"></input>
+    <button onclick="save_file()">Save file</button>
+</div>
+
 <script>
     //on_init(answer_data) 
     function on_init(answer_data){
@@ -47,7 +58,23 @@
             window.parent.postMessage({
                 function : 'save_answer_other',
                 data : value, 
+                type : 'text',
                 questionName: 'result'
+            }, '*');
+        }   
+   }
+   
+   function save_file(){
+        var value = document.getElementById('file').files[0];
+        var questionName = document.getElementById('questionName').value;
+        try {
+            App.save_answer_other('result', value);
+        } catch (error) {
+            window.parent.postMessage({
+                function : 'save_answer_other',
+                data : value,
+                type: 'file', 
+                questionName: questionName
             }, '*');
         }   
    }
