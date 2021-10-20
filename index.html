@@ -2,6 +2,7 @@
 <html>
 <head>
 <title>Page Title</title>
+<script src='./App_web.js'></script>
 </head>
 <body>
 
@@ -25,58 +26,24 @@
 </div>
 
 <script>
-    //on_init(answer_data) 
     function on_init(answer_data){
    	 document.getElementById('answer').innerText = answer_data;
    }
 
-   window.addEventListener('message', function(e) {
-       if(e.data.function === 'on_init'){
-            on_init(e.data.data)
-        }
-    });
-
-    //App.save_answer(data)
     function save(){
         var value = document.getElementById('text').value;
-        try {
-            App.save_answer(value)            
-        } catch (error) {
-            window.parent.postMessage({
-                function: 'save_answer',
-                data : value
-            }, '*');
-        }
+        App.save_answer(value) 
     }
-	 
-    //App.save_answer_other(data)
+
 	function save2(){
         var value = document.getElementById('text2').value;
-        try {
-            App.save_answer_other('result', value);
-        } catch (error) {
-            window.parent.postMessage({
-                function : 'save_answer_other',
-                data : value, 
-                type : 'text',
-                questionName: 'result'
-            }, '*');
-        }   
+        App.save_answer_other('result', value,'text');
    }
    
    function save_file(){
         var value = document.getElementById('file').files[0];
         var questionName = document.getElementById('questionName').value;
-        try {
-            App.save_answer_other('result', value);
-        } catch (error) {
-            window.parent.postMessage({
-                function : 'save_answer_other',
-                data : value,
-                type: 'file', 
-                questionName: questionName
-            }, '*');
-        }   
+        App.save_answer_other(questionName, value, 'file');
    }
 </script>
 </body>
