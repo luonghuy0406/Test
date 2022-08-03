@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <script src="./index.js"></script>
+    <meta charset="utf-8">
+    <title>GS1</title>
+    <script src="./GS1DigitalLinkToolkit.js"></script>
+    <script src="./interpretGS1Scan.js"></script>
+    <script src="./plausibleGS1DL.js"></script>
+    <style>
+      h1.title {
+        font-size: 1.5em;
+      }
+
+      footer {
+        margin-top: 2em;
+        ;
+        padding-top: 1em;
+        border-top: thin solid #999;
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <main class="wrapper" style="padding-top:2em">
+
+      <section class="container" id="demo-content">
+        <h1 class="title">GS1 1D/2D Code</h1>
+
+        <label for="interpretation">Interpretation:</label>
+        <div id="interpretation"></div>
+
+      </section>
+
+    </main>
+
+    <script type="text/javascript">
+      function on_init(answer_data) {
+        displayInterpretation(answer_data, document.getElementById('interpretation'));
+        interpretScan(answer_data).then(function(x) {
+          //console.log("Result:");
+          //console.log(x);
+          App.save_answer_other('codeoutput',JSON.stringify(x));
+        });
+      }
+
+      /* TEST */
+      on_init('01095011015300031715011910AB-123');
+
+    </script>
+  </body>
+
+</html>

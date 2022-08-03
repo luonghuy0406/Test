@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <script src="./index.js"></script>
+    <meta charset="utf-8">
+    <title>GS1</title>
+    <script src="https://gs1.github.io/GS1DigitalLinkCompressionPrototype/src/GS1DigitalLinkToolkit.js"></script>
+    <script src="https://gs1.github.io/interpretGS1scan/interpretGS1Scan.js"></script>
+    <script src="https://gs1.github.io/interpretGS1scan/plausibleGS1DL.js"></script>
+    <style>
+      h1.title {
+        font-size: 1.5em;
+      }
+
+      footer {
+        margin-top: 2em;
+        ;
+        padding-top: 1em;
+        border-top: thin solid #999;
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <main class="wrapper" style="padding-top:2em">
+
+      <section class="container" id="demo-content">
+        <h1 class="title">GS1 1D/2D Code</h1>
+
+        <label for="interpretation">Interpretation:</label>
+        <div id="interpretation"></div>
+
+      </section>
+
+    </main>
+
+    <script type="text/javascript">
+      function on_init(answer_data) {
+        console.log(">>>>answer_data",answer_data)
+        displayInterpretation(answer_data, document.getElementById('interpretation'));
+        interpretScan(answer_data).then(function(x) {
+          // console.log("Result:");
+          console.log(">>>>>Result:", x, JSON.stringify(x));
+
+          App.save_answer_other('codeoutput',JSON.stringify(x));
+        });
+      }
+
+      /* TEST */
+       // on_init(''); 
+
+    </script>
+  </body>
+
+</html>
